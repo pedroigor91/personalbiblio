@@ -1,0 +1,72 @@
+@model IEnumerable<PersonalBiblio.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900">Categorias</h1>
+            <p class="mt-1 text-sm text-gray-500">Organize seus livros por categorias</p>
+        </div>
+        <a asp-action="Create" 
+           class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 transition">
+            <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Nova Categoria
+        </a>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        @foreach (var categoria in Model)
+        {
+            <div class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">@categoria.Nome</h3>
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary text-white">
+                        @categoria.Livros.Count livros
+                    </span>
+                </div>
+
+                @if (!string.IsNullOrEmpty(categoria.Descricao))
+                {
+                    <p class="text-sm text-gray-600 mb-4">@categoria.Descricao</p>
+                }
+                else
+                {
+                    <p class="text-sm text-gray-400 italic mb-4">Sem descrição</p>
+                }
+
+                <div class="flex space-x-2">
+                    <a asp-action="Edit" asp-route-id="@categoria.Id" 
+                       class="flex-1 text-center px-3 py-2 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition">
+                        Editar
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@categoria.Id" 
+                       class="px-3 py-2 text-sm bg-red-50 text-red-600 rounded-md hover:bg-red-100 transition">
+                        Excluir
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="bg-white shadow rounded-lg p-12 text-center">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+            </svg>
+            <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhuma categoria cadastrada</h3>
+            <p class="mt-1 text-sm text-gray-500">Comece criando sua primeira categoria.</p>
+            <div class="mt-6">
+                <a asp-action="Create"
+                   class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-blue-700">
+                    Nova Categoria
+                </a>
+            </div>
+        </div>
+    }
+</div>

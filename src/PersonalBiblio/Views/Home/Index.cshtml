@@ -1,0 +1,169 @@
+@using PersonalBiblio.Models
+@model IEnumerable<PersonalBiblio.Models.Livro>
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="space-y-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-3xl font-bold text-gray-900">Dashboard</h1>
+            <p class="mt-1 text-sm text-gray-500">Visão geral da sua biblioteca pessoal</p>
+        </div>
+        <a asp-controller="Livros" asp-action="Create" 
+           class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+            <svg class="mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            Adicionar Livro
+        </a>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Total Livros -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-md bg-blue-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Total de Livros</dt>
+                            <dd class="text-3xl font-semibold text-gray-900">@ViewBag.TotalLivros</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livros Lidos -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-md bg-green-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Lidos</dt>
+                            <dd class="text-3xl font-semibold text-gray-900">@ViewBag.LivrosLidos</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livros Lendo -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-md bg-yellow-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Lendo</dt>
+                            <dd class="text-3xl font-semibold text-gray-900">@ViewBag.LivrosLendo</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Livros Quero Ler -->
+        <div class="bg-white overflow-hidden shadow rounded-lg">
+            <div class="p-5">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <div class="rounded-md bg-purple-500 p-3">
+                            <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="ml-5 w-0 flex-1">
+                        <dl>
+                            <dt class="text-sm font-medium text-gray-500 truncate">Quero Ler</dt>
+                            <dd class="text-3xl font-semibold text-gray-900">@ViewBag.LivrosQueroLer</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Livros Recentes -->
+    <div class="bg-white shadow rounded-lg">
+        <div class="px-6 py-5 border-b border-gray-200">
+            <h2 class="text-lg font-medium text-gray-900">Livros Recentes</h2>
+        </div>
+        <div class="px-6 py-4">
+            @if (Model != null && Model.Any())
+            {
+                <div class="space-y-4">
+                    @foreach (var livro in Model)
+                    {
+                        <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition">
+                            <div class="flex-1">
+                                <h3 class="text-base font-semibold text-gray-900">@livro.Titulo</h3>
+                                <p class="text-sm text-gray-600">@livro.Autor</p>
+                                <div class="mt-2 flex items-center space-x-4 text-xs text-gray-500">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-medium bg-gray-100">
+                                        @livro.Categoria?.Nome
+                                    </span>
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-medium 
+                                        @(livro.Status == StatusLeitura.Lido ? "bg-green-100 text-green-800" :
+                                          livro.Status == StatusLeitura.Lendo ? "bg-yellow-100 text-yellow-800" :
+                                          "bg-purple-100 text-purple-800")">
+                                        @(livro.Status == StatusLeitura.Lido ? "Lido" :
+                                          livro.Status == StatusLeitura.Lendo ? "Lendo" : "Quero Ler")
+                                    </span>
+                                    @if (livro.Ano.HasValue)
+                                    {
+                                        <span>@livro.Ano</span>
+                                    }
+                                </div>
+                            </div>
+                            <a asp-controller="Livros" asp-action="Details" asp-route-id="@livro.Id"
+                               class="ml-4 text-primary hover:text-blue-700 font-medium text-sm">
+                                Ver Detalhes →
+                            </a>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="text-center py-12">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                    </svg>
+                    <h3 class="mt-2 text-sm font-medium text-gray-900">Nenhum livro cadastrado</h3>
+                    <p class="mt-1 text-sm text-gray-500">Comece adicionando seu primeiro livro à biblioteca.</p>
+                    <div class="mt-6">
+                        <a asp-controller="Livros" asp-action="Create"
+                           class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-blue-700">
+                            Adicionar Livro
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+@model PersonalBiblio.Models.Categoria
+
+@{
+    ViewData["Title"] = "Editar Categoria";
+}
+
+<div class="max-w-2xl mx-auto">
+    <div class="mb-6">
+        <a asp-action="Index" class="text-primary hover:text-blue-700 text-sm font-medium">
+            ← Voltar para lista
+        </a>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">Editar Categoria</h1>
+
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="mb-4 p-4 bg-red-50 border border-red-200 rounded-md text-red-700"></div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="space-y-4">
+                <!-- Nome -->
+                <div>
+                    <label asp-for="Nome" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <input asp-for="Nome" 
+                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" 
+                           placeholder="Ex: Ficção Científica, Romance, etc."/>
+                    <span asp-validation-for="Nome" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Descrição -->
+                <div>
+                    <label asp-for="Descricao" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <textarea asp-for="Descricao" rows="3"
+                              class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" 
+                              placeholder="Descrição opcional da categoria"></textarea>
+                    <span asp-validation-for="Descricao" class="text-red-600 text-sm"></span>
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="mt-6 flex space-x-3">
+                <button type="submit" 
+                        class="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700 transition">
+                    Salvar Alterações
+                </button>
+                <a asp-action="Index" 
+                   class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

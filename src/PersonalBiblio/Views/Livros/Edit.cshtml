@@ -1,0 +1,99 @@
+@model PersonalBiblio.Models.Livro
+
+@{
+    ViewData["Title"] = "Editar Livro";
+}
+
+<div class="max-w-2xl mx-auto">
+    <div class="mb-6">
+        <a asp-action="Index" class="text-primary hover:text-blue-700 text-sm font-medium">
+            ← Voltar para lista
+        </a>
+    </div>
+
+    <div class="bg-white shadow rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-gray-900 mb-6">Editar Livro</h1>
+
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="mb-4 p-4 bg-red-50 border border-red-200 rounded-md text-red-700"></div>
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="DataCadastro" />
+
+            <div class="space-y-4">
+                <!-- Título -->
+                <div>
+                    <label asp-for="Titulo" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <input asp-for="Titulo" 
+                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" 
+                           placeholder="Digite o título do livro"/>
+                    <span asp-validation-for="Titulo" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Autor -->
+                <div>
+                    <label asp-for="Autor" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <input asp-for="Autor" 
+                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" 
+                           placeholder="Digite o nome do autor"/>
+                    <span asp-validation-for="Autor" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- ISBN -->
+                <div>
+                    <label asp-for="ISBN" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <input asp-for="ISBN" 
+                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" 
+                           placeholder="ISBN (opcional)"/>
+                    <span asp-validation-for="ISBN" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Ano -->
+                <div>
+                    <label asp-for="Ano" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <input asp-for="Ano" type="number" 
+                           class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50" 
+                           placeholder="Ano de publicação (opcional)"/>
+                    <span asp-validation-for="Ano" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Categoria -->
+                <div>
+                    <label asp-for="CategoriaId" class="block text-sm font-medium text-gray-700 mb-2">Categoria</label>
+                    <select asp-for="CategoriaId" asp-items="ViewBag.CategoriaId"
+                            class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                        <option value="">Selecione uma categoria</option>
+                    </select>
+                    <span asp-validation-for="CategoriaId" class="text-red-600 text-sm"></span>
+                </div>
+
+                <!-- Status -->
+                <div>
+                    <label asp-for="Status" class="block text-sm font-medium text-gray-700 mb-2"></label>
+                    <select asp-for="Status" class="w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                        <option value="0">Quero Ler</option>
+                        <option value="1">Lendo</option>
+                        <option value="2">Lido</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-red-600 text-sm"></span>
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="mt-6 flex space-x-3">
+                <button type="submit" 
+                        class="flex-1 px-4 py-2 bg-primary text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition">
+                    Salvar Alterações
+                </button>
+                <a asp-action="Index" 
+                   class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
