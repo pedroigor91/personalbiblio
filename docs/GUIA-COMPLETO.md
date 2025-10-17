@@ -1,6 +1,6 @@
 # Guia Completo da Oficina - Biblioteca Pessoal
 
-## Módulo 1: Setup Inicial (10min)
+## Módulo 1: Setup Inicial
 
 ### 1.1 Criar o Projeto
 
@@ -46,7 +46,7 @@ Edite `appsettings.json`:
 
 ---
 
-## Módulo 2: Models (15min)
+## Módulo 2: Models
 
 ### 2.1 Criar Enum StatusLeitura
 
@@ -128,7 +128,7 @@ public class Livro
 
 ---
 
-## Módulo 3: Database (10min)
+## Módulo 3: Database
 
 ### 3.1 Criar DbContext
 
@@ -216,7 +216,7 @@ dotnet ef database update
 
 ---
 
-## Módulo 4: Controllers (20min)
+## Módulo 4: Controllers
 
 ### 4.1 HomeController
 
@@ -298,7 +298,7 @@ Similar ao LivrosController, com CRUD completo.
 
 ---
 
-## Módulo 5: Views (25min)
+## Módulo 5: Views
 
 ### 5.1 Configurar Tailwind CSS v4
 

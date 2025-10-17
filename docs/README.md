@@ -69,33 +69,33 @@ PersonalBiblio/
 
 A oficina está dividida em módulos sequenciais:
 
-### 1. [Setup Inicial](01-setup.md) - 10 minutos
+### 1. [Setup Inicial](01-setup.md)
 - Criar o projeto
 - Instalar dependências
 - Configurar PostgreSQL
 
-### 2. [Models e Domain](02-models.md) - 15 minutos
+### 2. [Models e Domain](02-models.md)
 - Criar entidades (Livro, Categoria)
 - Adicionar validações
 - Criar Enums
 
-### 3. [Database e EF Core](03-database.md) - 10 minutos
+### 3. [Database e EF Core](03-database.md)
 - Configurar DbContext
 - Criar Migrations
 - Popular dados iniciais
 
-### 4. [Controllers](04-controllers.md) - 20 minutos
+### 4. [Controllers](04-controllers.md)
 - HomeController (Dashboard)
 - LivrosController (CRUD completo)
 - CategoriasController (CRUD)
 
-### 5. [Views](05-views.md) - 25 minutos
+### 5. [Views](05-views.md)
 - Layout com Tailwind CSS v4
 - Views de Livros
 - Views de Categorias
 - Dashboard
 
-### 6. [Testes e Deploy](06-testes.md) - 10 minutos
+### 6. [Testes e Deploy](06-testes.md)
 - Executar a aplicação
 - Testar funcionalidades
 - Próximos passos
@@ -119,7 +119,7 @@ dotnet ef database update
 dotnet run
 ```
 
-Acesse: `https://localhost:5001`
+Acesse: `https://localhost:5000`
 
 ## 🎨 Funcionalidades do Sistema
 
